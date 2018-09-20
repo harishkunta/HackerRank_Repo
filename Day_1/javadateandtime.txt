@@ -1,0 +1,14 @@
+import java.util.Calendar;
+public class DateAndTime{ 
+public static String getDay(String date,String month,String year){
+    String day;  
+     Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.parseInt(year));
+        cal.set(Calendar.MONTH, Integer.parseInt(month)-1);
+        cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date));
+    String[] strDays = new String[] { "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY",
+        "FRIDAY", "SATURDAY" };
+    day=strDays[cal.get(Calendar.DAY_OF_WEEK) - 1];
+     
+    return day;
+}
