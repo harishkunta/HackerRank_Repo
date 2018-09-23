@@ -1,0 +1,15 @@
+ String[] input=new String[t];
+          for (int i = 0; i < t; i++) {
+              input[i]=pair_left[i]+" "+pair_right[i];
+                             
+          }
+        Set<String> list=new HashSet<>();
+        int[] arr=new int[t];
+    int count=0;
+        for(int i=0;i<t;i++){
+            if(!list.contains(input[i])){
+                    list.add(input[i]);
+                    count++;
+            }
+            System.out.println(count);
+        }
