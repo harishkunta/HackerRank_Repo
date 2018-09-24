@@ -1,0 +1,11 @@
+class Arithmetic{
+    int x;
+    int add(int a, int b)
+    {
+        x=a+b;
+        return x;
+    }
+}
+class Adder extends Arithmetic{
+    
+}
