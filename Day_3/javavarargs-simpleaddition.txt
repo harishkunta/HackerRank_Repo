@@ -1,0 +1,12 @@
+class Add{
+    void add(int ...a){
+    int sum=0;
+    for (int i: a) {
+    System.out.print(i);
+    sum=sum+i;
+        if(i!=a[a.length-1])
+            System.out.print("+");
+    }
+    System.out.println("="+sum);
+    }
+}
