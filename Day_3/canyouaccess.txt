@@ -1,0 +1,3 @@
+ Inner inner=new Inner();
+    o=inner.new Private();
+    System.out.println(num+" is "+((Solution.Inner.Private)o).powerof2(num));
