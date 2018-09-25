@@ -1,0 +1,40 @@
+PerformOperation isOdd(){
+    PerformOperation odd =((int a) -> { 
+        if (a%2 != 0) 
+            return true;
+        else
+           return false;});
+    return odd;
+}
+PerformOperation isPrime(){
+    PerformOperation prime =((int a) -> {
+        int count=0;
+        for(int i=2;i<a;i++){
+            if(a%i==0)
+                count++;
+        }
+        if(count==0)
+            return true;
+        else
+           return false;});
+    return prime;
+}
+PerformOperation isPalindrome(){
+    PerformOperation palindrome =((int a) -> { 
+       int t = a; 
+        int reverse=0;
+       while (t != 0)
+       {
+          reverse = reverse * 10;
+          reverse = reverse + t%10;
+          t = t/10;
+       }
+
+       if (a == reverse)
+         return true;
+       else
+         return false;});
+        
+return palindrome;
+}
+}
