@@ -1,0 +1,23 @@
+import static java.lang.System.*;
+class Prime{
+    public void checkPrime(int ...a){
+            for(int i :a){
+                boolean flag=false;
+                if(i==1)
+                    flag=true;
+                else{
+                for(int j=2;j<i;j++){
+                    if(i%j==0){
+                        flag=true;
+                        break;
+                    }
+                     }
+                    }
+                if(flag==false)
+                {
+                    System.out.print(i+" ");
+                }
+            }
+        System.out.println();
+    }
+}
