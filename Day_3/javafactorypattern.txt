@@ -1,0 +1,8 @@
+ Food food;
+            if(order.equalsIgnoreCase("cake")){
+                food= new Cake();
+            }
+            else{
+                food= new Pizza();
+            }
+return food;
