@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -8,14 +8,12 @@ process.stdin.setEncoding('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-process.stdin.on('data', inputStdin => {
+process.stdin.on('data', function(inputStdin) {
     inputString += inputStdin;
 });
 
-process.stdin.on('end', _ => {
-    inputString = inputString.replace(/\s*$/, '')
-        .split('\n')
-        .map(str => str.replace(/\s*$/, ''));
+process.stdin.on('end', function() {
+    inputString = inputString.split('\n');
 
     main();
 });
@@ -24,49 +22,51 @@ function readLine() {
     return inputString[currentLine++];
 }
 
-// Complete the matchingStrings function below.
-function matchingStrings(strings, queries) {
-        var size=queries.length;
-        var results=new Array(size);
-        var k=0;
-        for(var j=0;j<size;j++){
-             var temp=queries[j];
-            var count=0;
-        for(var i=0;i<strings.length;i++){
-           if(temp==(strings[i]))
-               count++;
-            
-        }
-            results[k]=count;
-            k++;
-        }
- return results;
-}
+// Complete the dynamicArray function below.
+
 
 function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+   
 
-    const stringsCount = parseInt(readLine(), 10);
+    const nq = readLine().replace(/\s+$/g, '').split(' ');
 
-    let strings = [];
+    const n = parseInt(nq[0], 10);
 
-    for (let i = 0; i < stringsCount; i++) {
-        const stringsItem = readLine();
-        strings.push(stringsItem);
+    const q = parseInt(nq[1], 10);
+
+    let queries = Array(q);
+    let list = Array(n);
+        for(let i=0;i<n;i++){
+            list[i]=[];
+        }
+    for (let i = 0; i < q; i++) {
+            
+        queries[i] = readLine().replace(/\s+$/g, '').split(' ').map(queriesTemp => parseInt(queriesTemp, 10));
     }
 
-    const queriesCount = parseInt(readLine(), 10);
+    var lastAnswer=0;
+          for(var j=0;j<q;j++){
+            var ch=queries[j][0];
+            var x=queries[j][1];
+            var y=queries[j][2];
+    
+          
+              var sequence=(x^lastAnswer)%n;
+             if(ch==1){
+                 var a=list[sequence];
+                               
+                   a.push(y);
+             }   
+            else{
+                var size=list[sequence].length;
+                var index=y%size; 
+                lastAnswer=list[sequence][index];
+                console.log(lastAnswer);
+            }
+        
+        }
 
-    let queries = [];
+    
 
-    for (let i = 0; i < queriesCount; i++) {
-        const queriesItem = readLine();
-        queries.push(queriesItem);
-    }
-
-    let res = matchingStrings(strings, queries);
-
-    ws.write(res.join("\n") + "\n");
-
-    ws.end();
+    
 }
