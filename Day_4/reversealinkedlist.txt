@@ -1,0 +1,12 @@
+static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+            SinglyLinkedListNode temp=head;
+        SinglyLinkedListNode previous=null,nextnode;
+        while(temp!=null){
+            nextnode=temp.next;
+            temp.next=previous;
+             previous = temp; 
+            temp= nextnode; 
+        }
+        return previous;
+
+    }
