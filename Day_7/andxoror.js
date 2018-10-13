@@ -1,61 +1,33 @@
-'use strict';
-
-const fs = require('fs');
+function processData(input) {
+    input = input.split("\n");
+    var n = parseInt(input[0]);
+    var list = input[1].split(" ").map(Number);
+    var max = 0;
+    var s = [];
+    var xor = function(a, b) {
+        return a ^ b;
+    }
+    for (var i = 0; i < n; i++) {
+        while (s.length > 0) {
+            max = Math.max(max, xor(list[i], list[s[s.length-1]]));
+            if (list[s[s.length-1]] > list[i]) {
+                s.pop();
+            } else {
+                break;
+            }
+        }
+        s.push(i);
+    }
+    console.log(max);
+} 
 
 process.stdin.resume();
-process.stdin.setEncoding('utf-8');
-
-let inputString = '';
-let currentLine = 0;
-
-process.stdin.on('data', inputStdin => {
-    inputString += inputStdin;
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
 });
 
-process.stdin.on('end', _ => {
-    inputString = inputString.trim().split('\n').map(str => str.trim());
-
-    main();
+process.stdin.on("end", function () {
+   processData(_input);
 });
-
-function readLine() {
-    return inputString[currentLine++];
-}
-
-/*
- * Complete the andXorOr function below.
- */
-
-
-function main() {
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
-
-    const aCount = parseInt(readLine(), 10);
-
-    const a = readLine().split(' ').map(aTemp => parseInt(aTemp, 10));
-
-       var size=a.length;
-
-        var max=0;
-         var j=0;
-         var arr=new Array();
-        while(size>=2){
-
-            for(let i=0;i<=a.length-size;i++) {
-                arr = a.slice(i+j,i+j+size);
-
-                arr.sort();
-                var first=arr[0];
-                var second=arr[1]; 
-                var value=(first^second);
-                if(value>max) {
-                    max=value;
-                }
-            }
-            size--;
-        }
-
-    ws.write(max + "\n");
-
-    ws.end();
-}
