@@ -25,34 +25,31 @@ function readLine() {
 }
 
 // Complete the jumpingOnClouds function below.
-function jumpingOnClouds(c, k) {
-    var e=100;
-    for(var i=0;i<c.length;) {
-        var j=0;
-        while(j<k){
-            
-            if((j==k-1)&&(c[i]==1)) 
-                e=e-2;
-            j++;
+function jumpingOnClouds(c) {
+
+    var count = 0;
+        var i = 0;
+        while(i < c.length-1) {
+            if (i < c.length-2 && c[i+2] == 0) {
+                i++;
+            }
+            if(i != c.length - 1) {
+                count++;
+            }
+            i++;
         }
-        e=e-1;
-        i=i+k;
-    }
-return e;
+        return count;
+
 }
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
-    const nk = readLine().split(' ');
-
-    const n = parseInt(nk[0], 10);
-
-    const k = parseInt(nk[1], 10);
+    const n = parseInt(readLine(), 10);
 
     const c = readLine().split(' ').map(cTemp => parseInt(cTemp, 10));
 
-    let result = jumpingOnClouds(c, k);
+    let result = jumpingOnClouds(c);
 
     ws.write(result + "\n");
 
